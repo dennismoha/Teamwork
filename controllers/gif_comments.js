@@ -25,13 +25,6 @@ const gifCommentsdisplay = (req,res) => {
     })
 }
 
-//displaying all comments of a specific gif
-
-
-
-//updating a specific gif comment
-
-//deleting a specific gif comment
 
 
 
