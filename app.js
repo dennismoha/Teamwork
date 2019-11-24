@@ -15,6 +15,7 @@ const Articles = require('./routes/articles')
 const Comments = require('./routes/comments');
 const gifroute = require('./routes/gif');
 const users   = require('./routes/users')
+const gifComments = require('./routes/gif_comments');
 
 
 
@@ -22,6 +23,7 @@ app.use('/v1/users/auth',users);
 app.use('/v1/users/articles',Articles);
 app.use('/v1/users/comments',Comments);
 app.use('/v1/users/gif',gifroute)
+app.use('/v1/users/gif/gifComments',gifComments)
 
 
 

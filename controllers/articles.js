@@ -7,7 +7,8 @@ const getarticles = function (req,res,next){
             res.status(400).send(err)
             console.log("there's an error in the get article route")
         }
-        res.status(200).json(results.rows);
+        //res.status(200).json(results.rows);
+        res.send('articles showed successfully')
         console.log('get articles working well');
     });
     
