@@ -1,10 +1,5 @@
 const db = require('../dbConfig/db');
 
-
-
-
-
-
 //displaying all the articles
 const getarticles = function (req,res,next){
     db.query('select * from articles ',function(err,results){
@@ -21,15 +16,17 @@ const getarticles = function (req,res,next){
 //getting an article with a single id
 const articleIdById = function(request,response,next){
     const den = parseInt(request.params.id)
+    console.log(den)
 
-    db.query('select * from articles where article_id = $1',[den],(err,results)=>{
+    db.query('select * from articles where id = $1',[den],(err,results)=>{
         if(err) {
             throw err;
         }
-        response.status(200).json(results.rows)        
+        response.status(200).json(results.rows)  
+        console.log(results)      
         console.log('select Id article worked well');
     })
-   next()
+   
   
 }
 
@@ -39,11 +36,12 @@ const articleIdById = function(request,response,next){
 const createArticles = (req,res,next)=> {
     const {content} = req.body;
     
-    db.query('insert into dummyTable (contents) values($1)',[content],(err,results)=>{
+    db.query('insert into articles (content) values($1)',[content],(err,results)=>{
         if(err) {
            throw err           
         }     
-       res.status(201).send(`User added with ID: ${results.rows}`)       
+       //res.status(201).send(`User added with ID: ${results.rows}`)  
+       res.status(201).send(results.rows)     
         console.log('added new article');
     })
     
@@ -56,7 +54,7 @@ const createArticles = (req,res,next)=> {
 const userArticles = function(req,res,next){
     const Id = parseInt(req.params.id);
 
-    db.query('select * from articles where id =$1',[Id],(err,results)=>{
+    db.query('select * from articles where article_id =$1',[Id],(err,results)=>{
         if(err) {
             throw err
         }

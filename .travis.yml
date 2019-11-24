@@ -1,0 +1,20 @@
+sudo : false
+language: node_js 
+node_js: 
+          - 12.11.1
+
+ cache :
+           - npm
+
+install: 
+          - npm ci
+script: 
+         - npm test
+         - npm run build
+deploy: 
+      provide: pages
+      skin-cleanup : true
+      github-token: $GIT_TRAVSCI_TOKE
+      on:
+        branch : gh-pages
+
